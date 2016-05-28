@@ -54,9 +54,9 @@ RUN apt-get update -qq \
 		zlib1g-dev \
 		libssl1.0.0
 
-## Check out R-devel
+## Check out R-3.3.x
 RUN cd /tmp \
-	&& svn co http://svn.r-project.org/R/trunk R-devel 
+	&& svn co http://svn.r-project.org/R/trunk R-3-3-branch
 
 ## Build and install according the standard 'recipe' I emailed/posted years ago
 RUN cd /tmp/R-devel \
