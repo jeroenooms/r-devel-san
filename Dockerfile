@@ -1,10 +1,6 @@
-## Emacs, make this -*- mode: sh; -*-
-
-## start with the Docker 'base R' Debian-based image
-FROM r-base:latest
-
-## This handle reaches Carl and Dirk
-MAINTAINER "Carl Boettiger and Dirk Eddelbuettel" rocker-maintainers@eddelbuettel.com
+## Modfied by Jeroen
+## Start with r+rstudio image
+FROM rocker/rstudio
 
 ## Remain current
 RUN apt-get update -qq \
@@ -55,7 +51,8 @@ RUN apt-get update -qq \
 		xdg-utils \
 		xfonts-base \
 		xvfb \
-		zlib1g-dev 
+		zlib1g-dev \
+		libssl1.0.0
 
 ## Check out R-devel
 RUN cd /tmp \
@@ -103,4 +100,7 @@ RUN cd /usr/local/bin \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
 
-
+# Run rstudio server with asan/ubsan R
+ENV RSTUDIO_WHICH_R /usr/local/bin/RD
+EXPOSE 8787
+CMD rstudio-server restart && /bin/bash
