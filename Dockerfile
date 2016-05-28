@@ -100,6 +100,10 @@ RUN cd /usr/local/bin \
 	&& ln -s Rdevel RD \
 	&& ln -s Rscriptdevel RDscript
 
+RUN \
+  useradd -ms /bin/bash san && \
+  echo san:san | chpasswd
+
 # Run rstudio server with asan/ubsan R
 ENV RSTUDIO_WHICH_R /usr/local/bin/RD
 EXPOSE 8787
