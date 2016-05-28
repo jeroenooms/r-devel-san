@@ -106,5 +106,8 @@ RUN \
 
 # Run rstudio server with asan/ubsan R
 ENV RSTUDIO_WHICH_R /usr/local/bin/RD
+RUN echo 'rsession-which-r=/usr/local/bin/RD' >> /etc/rstudio/rserver.conf
+
 EXPOSE 8787
+
 CMD rstudio-server restart && /bin/bash
