@@ -14,7 +14,7 @@ RUN apt-get update -qq \
 		debhelper \
 		default-jdk \
 		g++ \
-		gcc \
+		gcc-6 \
 		gfortran \
 		groff-base \
 		libblas-dev \
@@ -59,7 +59,7 @@ RUN cd /tmp \
 	&& svn co http://svn.r-project.org/R/trunk R-3-3-branch
 
 ## Build and install according the standard 'recipe' I emailed/posted years ago
-RUN cd /tmp/R-devel \
+RUN cd /tmp/R-3-3-branch \
 	&& R_PAPERSIZE=letter \
 	   R_BATCHSAVE="--no-save --no-restore" \
 	   R_BROWSER=xdg-open \
